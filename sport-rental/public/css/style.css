@@ -1,0 +1,102 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body & Layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* Buttons */
+button, .btn, .back-btn, .logout-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
+    background: #2980b9;
+}
+
+/* Card Style */
+.card {
+    background: #f7f9fc;
+    border: 1px solid #dfe6e9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    max-width: 300px;  /* Limit the maximum width */
+    height: auto;      /* Maintain the aspect ratio */
+    margin-top: 10px;
+    border-radius: 10px;
+    object-fit: contain;  /* Ensure the image fits without stretching */
+}
+
+/* Availability Text */
+.availability {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #2d3436;
+}
+
+/* Error */
+.error {
+    background: #ffe6e6;
+    color: #c0392b;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
