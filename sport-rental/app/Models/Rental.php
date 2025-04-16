@@ -15,4 +15,9 @@ class Rental extends Model
         'year_level',
         'rental_date',
     ];
+
+    public function equipment() {
+        return $this->belongsTo(Equipment::class);
+    }
+    
 }

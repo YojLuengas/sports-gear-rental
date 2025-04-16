@@ -3,8 +3,31 @@
 <head>
     <title>Rent - {{ $equipment->name }}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- Menu Icon -->
+<div class="menu-icon" onclick="toggleSidebar()">☰</div>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.querySelector('.menu-icon');
+        sidebar.classList.toggle('active');
+        menuIcon.classList.toggle('active');
+    }
+</script>
+
+
+    <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <a href="/home"><i class="fas fa-home sidebar-icon"></i> Home</a>
+    <a href="/records"><i class="fas fa-clipboard-list sidebar-icon"></i> Records</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt sidebar-icon"></i> Logout</a>
+</div>
+
+
     <div class="container">
         <h2>Rent {{ $equipment->name }}</h2>
         
@@ -31,5 +54,16 @@
         <!-- Back to Home button -->
         <a href="/home" class="back-btn">Back to Home</a>
     </div>
+
+    <!-- Toggle Script -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.querySelector('.menu-icon');
+            sidebar.classList.toggle('active');
+            menuIcon.classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>

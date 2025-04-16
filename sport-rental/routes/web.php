@@ -34,3 +34,22 @@ Route::post('/rent/{id}', function(Request $request, $id) {
     $equipment->increment('rented_quantity');
     return redirect('/home');
 });
+
+Route::get('/records', function () {
+    if (!session('logged_in')) return redirect('/');
+    $rentals = Rental::with('equipment')->get();
+    return view('records', compact('rentals'));
+});
+
+Route::post('/return/{id}', function ($id) {
+    $rental = Rental::findOrFail($id);
+    $equipment = Equipment::findOrFail($rental->equipment_id);
+
+    // Decrease rented quantity
+    $equipment->decrement('rented_quantity');
+
+    // Delete the rental record
+    $rental->delete();
+
+    return redirect('/records');
+});
