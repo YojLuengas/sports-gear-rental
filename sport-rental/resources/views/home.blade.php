@@ -7,16 +7,28 @@
 
 </head>
 <body>
+<div class="header">
+<span>Holy Cross Davao College</span>
+</div>
+
+
 
     <!-- Menu Icon -->
     <div class="menu-icon" onclick="toggleSidebar()">☰</div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
+   <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
     <a href="/home"><i class="fas fa-home sidebar-icon"></i> Home</a>
     <a href="/records"><i class="fas fa-clipboard-list sidebar-icon"></i> Records</a>
+    <a href="/history"><i class="fas fa-history sidebar-icon"></i> History</a>
     <a href="/logout"><i class="fas fa-sign-out-alt sidebar-icon"></i> Logout</a>
+
+    <!-- Logo at the bottom -->
+    <div class="sidebar-logo">
+        <img src="/images/logo.png" alt="Logo">
     </div>
+</div>
+
 
     <!-- Main Container -->
     <div class="card-container">

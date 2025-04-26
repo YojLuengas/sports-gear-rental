@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rental extends Model
+class RentalHistory extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,11 @@ class Rental extends Model
         'student_name',
         'year_level',
         'rental_date',
+        'returned_date',
     ];
 
-    public function equipment() {
+    public function equipment()
+    {
         return $this->belongsTo(Equipment::class);
     }
-
-    
-    
 }

@@ -1,67 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rented Equipment Records</title>
+    <title>Rental Records - Sport Rental</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Menu Icon -->
-    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
+<!-- Sidebar -->
+<div class="menu-icon" onclick="toggleSidebar()">☰</div>
+<div class="sidebar" id="sidebar">
     <a href="/home"><i class="fas fa-home sidebar-icon"></i> Home</a>
     <a href="/records"><i class="fas fa-clipboard-list sidebar-icon"></i> Records</a>
+    <a href="/history"><i class="fas fa-history sidebar-icon"></i> History</a>
     <a href="/logout"><i class="fas fa-sign-out-alt sidebar-icon"></i> Logout</a>
+
+    <!-- Logo at the bottom -->
+    <div class="sidebar-logo">
+        <img src="/images/logo.png" alt="Logo">
     </div>
+</div>
 
-    <div class="container">
-        <h2>Rented Equipment Records</h2>
+<script>
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    sidebar.classList.toggle('active');
+    menuIcon.classList.toggle('active');
+}
+</script>
 
-        @if($rentals->isEmpty())
-            <p>No rentals found.</p>
-        @else
-            <table>
-                <thead>
+<!-- Main Content -->
+<div class="container">
+    <h2>Current Rental Records</h2>
+
+    <div class="records-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipment</th>
+                    <th>Student Name</th>
+                    <th>Year Level</th>
+                    <th>Rental Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($rentals as $rental)
                     <tr>
-                        <th>Student Name</th>
-                        <th>Year Level</th>
-                        <th>Equipment</th>
-                        <th>Rental Date</th>
-                        <th>Action</th>
+                        <td>{{ $rental->equipment->name }}</td>
+                        <td>{{ $rental->student_name }}</td>
+                        <td>{{ $rental->year_level }}</td>
+                        <td>{{ $rental->rental_date }}</td>
+                        <td>
+                            <!-- Return Form -->
+                            <form action="/return/{{ $rental->id }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('POST') <!-- 👈 Important: match your route -->
+                                <button type="submit" class="btn return-btn">Return</button>
+                            </form>
+
+                            <!-- Update Form -->
+                            <button class="btn update-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Update</button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($rentals as $rental)
-                        <tr>
-                            <td>{{ $rental->student_name }}</td>
-                            <td>{{ $rental->year_level }}</td>
-                            <td>{{ $rental->equipment->name }}</td>
-                            <td>{{ $rental->rental_date }}</td>
-                            <td>
-                                <form method="POST" action="/return/{{ $rental->id }}">
-                                    @csrf
-                                    <button type="submit" class="btn danger">Return</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
 
+                    <!-- Hidden Update Form -->
+                    <tr id="update-form-{{ $rental->id }}" class="update-form-row" style="display:none;">
+                        <td colspan="5">
+                            <form action="/update/{{ $rental->id }}" method="POST" class="update-form">
+                                @csrf
+                                @method('PUT')
+                                <input type="text" name="student_name" value="{{ $rental->student_name }}" required>
+                                <input type="text" name="year_level" value="{{ $rental->year_level }}" required>
+                                <input type="date" name="rental_date" value="{{ $rental->rental_date }}" required>
+                                <button type="submit" class="btn save-btn">Save</button>
+                                <button type="button" class="btn cancel-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Cancel</button>
+
+                            </form>
+                        </td>
+                    </tr>
+
+                @empty
+                    <tr>
+                        <td colspan="5">No rental records found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
+</div>
 
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const menuIcon = document.querySelector('.menu-icon');
-            sidebar.classList.toggle('active');
-            menuIcon.classList.toggle('active');
-        }
-    </script>
+<script>
+function toggleUpdateForm(id) {
+    var formRow = document.getElementById('update-form-' + id);
+    if (formRow.style.display === 'none') {
+        formRow.style.display = 'table-row';
+    } else {
+        formRow.style.display = 'none';
+    }
+}
+</script>
 
 </body>
 </html>
