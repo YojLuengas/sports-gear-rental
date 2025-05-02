@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Records - Sport Rental</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -53,14 +55,14 @@ function toggleSidebar() {
                         <td>{{ $rental->year_level }}</td>
                         <td>{{ $rental->rental_date }}</td>
                         <td>
-                            <!-- Return Form -->
+                            <!-- Return Button -->
                             <form action="/return/{{ $rental->id }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('POST') <!-- 👈 Important: match your route -->
                                 <button type="submit" class="btn return-btn">Return</button>
                             </form>
 
-                            <!-- Update Form -->
+                            <!-- Update Button -->
                             <button class="btn update-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Update</button>
                         </td>
                     </tr>
@@ -71,12 +73,13 @@ function toggleSidebar() {
                             <form action="/update/{{ $rental->id }}" method="POST" class="update-form">
                                 @csrf
                                 @method('PUT')
-                                <input type="text" name="student_name" value="{{ $rental->student_name }}" required>
-                                <input type="text" name="year_level" value="{{ $rental->year_level }}" required>
-                                <input type="date" name="rental_date" value="{{ $rental->rental_date }}" required>
-                                <button type="submit" class="btn save-btn">Save</button>
-                                <button type="button" class="btn cancel-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Cancel</button>
-
+                                <input type="text" name="student_name" value="{{ $rental->student_name }}" required placeholder="Student Name">
+                                <input type="text" name="year_level" value="{{ $rental->year_level }}" required placeholder="Year Level">
+                                <input type="date" name="rental_date" value="{{ $rental->rental_date }}" required placeholder="Rental Date">
+                                <div class="form-buttons">
+                                    <button type="submit" class="btn save-btn">Save</button>
+                                    <button type="button" class="btn cancel-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Cancel</button>
+                                </div>
                             </form>
                         </td>
                     </tr>
@@ -94,10 +97,10 @@ function toggleSidebar() {
 <script>
 function toggleUpdateForm(id) {
     var formRow = document.getElementById('update-form-' + id);
-    if (formRow.style.display === 'none') {
-        formRow.style.display = 'table-row';
+    if (formRow.style.display === 'none' || formRow.style.display === '') {
+        formRow.style.display = 'table-row';  // Ensure it is shown as a table row
     } else {
-        formRow.style.display = 'none';
+        formRow.style.display = 'none'; // Hide the form again
     }
 }
 </script>

@@ -6,7 +6,27 @@
     <title>Login - Sport Rental</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
+<body class="login-page">
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+    <div class="loader">
+        <!-- Basketball -->
+        <div class="icon basketball">
+            🏀
+        </div>
+
+        <!-- Volleyball -->
+        <div class="icon volleyball">
+            🏐
+        </div>
+
+        <!-- Soccer Ball -->
+        <div class="icon soccer">
+            ⚽
+        </div>
+    </div>
+    </div>
     <div class="login-container">
         <h2>Login</h2>
 
@@ -28,5 +48,12 @@
             <button type="submit">Login</button>
         </form>
     </div>
+    <script>
+    document.querySelector("form").addEventListener("submit", function() {
+    document.getElementById("loading-overlay").style.display = "flex";
+    });
+    </script>
+
+
 </body>
 </html>

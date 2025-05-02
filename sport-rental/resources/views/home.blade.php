@@ -33,18 +33,26 @@
     <!-- Main Container -->
     <div class="card-container">
     @foreach ($equipment as $item)
-        <div class="card">
-            <h3>{{ $item->name }}</h3>
-            <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}">
-            <p class="availability">
-                {{ $item->rented_quantity ?? 0 }}/{{ $item->total_quantity ?? 3 }} Rented
-            </p>
-            @if (($item->rented_quantity ?? 0) >= ($item->total_quantity ?? 3))
-                <p class="unavailable">No more available equipment</p>
-            @else
-                <a href="/rent/{{ $item->id }}" class="btn">Rent</a>
-            @endif
-        </div>
+    <div class="card">
+    <h3>{{ $item->name }}</h3>
+    <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}">
+
+    @php
+        $rented = $item->rented_quantity ?? 0;
+        $total = $item->total_quantity ?? 3;
+        $available = $total - $rented;
+    @endphp
+
+    <p class="availability">Available: {{ $available }}</p>
+    <p class="availability">Rented: {{ $rented }}</p>
+
+    @if ($available <= 0)
+        <p class="unavailable">No more available equipment</p>
+    @else
+        <a href="/rent/{{ $item->id }}" class="btn">Rent</a>
+    @endif
+</div>
+
     @endforeach
 </div>
 
