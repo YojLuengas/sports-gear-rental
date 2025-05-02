@@ -3,25 +3,32 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Equipment;
 use App\Models\Rental;
 use App\Models\RentalHistory; // 🔥 NEW for history
+use App\Models\User;
 
 // --- Authentication Routes ---
 Route::get('/', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+// --- Registration Routes ---
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 // --- Home Page ---
 Route::get('/home', function () {
-    if (!session('logged_in')) return redirect('/');
+    if (!Auth::check()) return redirect('/'); // ✅ Auth check instead of session
     $equipment = Equipment::all();
     return view('home', compact('equipment'));
 });
 
 // --- Renting Equipment ---
 Route::get('/rent/{id}', function($id) {
-    if (!session('logged_in')) return redirect('/');
+    if (!Auth::check()) return redirect('/');
     $equipment = Equipment::findOrFail($id);
     return view('rent', compact('equipment'));
 });
@@ -40,7 +47,7 @@ Route::post('/rent/{id}', function(Request $request, $id) {
 
 // --- Rental Records ---
 Route::get('/records', function () {
-    if (!session('logged_in')) return redirect('/');
+    if (!Auth::check()) return redirect('/');
     $rentals = Rental::with('equipment')->get();
     return view('records', compact('rentals'));
 });
@@ -81,7 +88,7 @@ Route::put('/update/{id}', function(Request $request, $id) {
 
 // --- Rental History Page ---
 Route::get('/history', function(Request $request) {
-    if (!session('logged_in')) return redirect('/');
+    if (!Auth::check()) return redirect('/');
 
     $query = RentalHistory::query();
 

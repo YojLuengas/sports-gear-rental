@@ -47,7 +47,11 @@
             <!-- Login Button -->
             <button type="submit">Login</button>
         </form>
+        <p>Don't have an account? <a href="{{ route('register') }}">Create an Account</a></p>
+
+
     </div>
+    
     <script>
     document.querySelector("form").addEventListener("submit", function() {
     document.getElementById("loading-overlay").style.display = "flex";

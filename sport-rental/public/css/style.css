@@ -288,13 +288,22 @@ button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
     transform: scale(1.05);
 }
 
-/* Style for Return and Update buttons specifically */
-.return-btn, .update-btn {
-    padding: 10px 15px;
+/* Wrapper for Return and Update Buttons */
+.record-buttons-container {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
     margin-top: 10px;
-    font-size: 16px;
-    width: 120px;
+}
+
+/* Style for individual buttons */
+.return-btn, .update-btn {
+    padding: 8px 15px; /* Adjust padding for smaller buttons */
+    font-size: 14px; /* Smaller font size */
+    width: 100px; /* Smaller width for buttons */
     display: inline-block;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .return-btn {
@@ -305,44 +314,41 @@ button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
     background-color: #96281b;
 }
 
-.update-btn {
-    background-color: #e67e22;
-}
-
-.update-btn:hover {
-    background-color: #d35400;
-}
-
-/* ----------------- EDIT FORM INPUTS ----------------- */
+/* Style for the form container */
 .update-form {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+    flex-direction: column;  /* Arrange inputs vertically */
+    gap: 15px;  /* Space between form elements */
+    align-items: stretch;  /* Ensure inputs stretch across container */
+    width: 100%;  /* Ensure it fills the width of the container */
+    max-width: 400px; /* Set a max-width to prevent it from stretching too far */
+    margin: 0 auto;  /* Center the form horizontally */
+    transition: all 0.3s ease; /* Smooth transition for form appearance */
 }
 
+/* Style for individual input fields */
 .update-form input {
-    padding: 10px;
+    padding: 12px 16px;
     width: 100%;
-    max-width: 300px; /* Ensure the input fields are not too wide */
-    background: #f8f9fa;
+    background-color: #f8f9fa;
     border: 1px solid #ccc;
     border-radius: 8px;
-    color: #333;
     font-size: 16px;
+    color: #333;
 }
 
+/* Style for Save and Cancel buttons */
 .update-form button {
     width: 100%;
-    max-width: 150px; /* Ensure buttons are not too wide */
-    padding: 10px 15px;
+    max-width: 150px;  /* Make buttons fit within the container */
+    padding: 12px 15px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
     margin-top: 15px;
+    transition: background 0.3s ease;
 }
 
-/* Save and Cancel button specific styles */
 .save-btn {
     background-color: #27ae60;
 }
@@ -358,6 +364,17 @@ button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
 .cancel-btn:hover {
     background-color: #96281b;
 }
+
+/* Smooth slide-in effect from top to bottom */
+.update-form.active {
+    transform: translateY(0);  /* Slide the form in */
+}
+
+.update-form.inactive {
+    transform: translateY(-100%); /* Slide the form out */
+    opacity: 0; /* Optional: fade out effect */
+}
+
 
 /* ----------------- TABLE LAYOUT ----------------- */
 table {
@@ -527,6 +544,186 @@ body.login-page {
     min-height: 100vh;
     padding: 0;
 }
+
+/* ----------------- REGISTER PAGE ----------------- */
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-container h2 {
+    color: #e74c3c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+form input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+form button {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #c0392b;
+}
+
+p {
+    margin-top: 20px;
+    color: #555;
+}
+
+p a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    color: #c0392b;
+}
+
+/* Loader Styles */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    display: flex;
+    gap: 30px;
+    animation: pulse 2s infinite;
+}
+
+.icon {
+    font-size: 3rem;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.icon:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.icon:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ----------------- REGISTER FORM ----------------- */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #e74c3c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login-container form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.login-container form input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.login-container form button {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.login-container form button:hover {
+    background-color: #c0392b;
+}
+
+
+
+
 
 
 
