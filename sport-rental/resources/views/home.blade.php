@@ -8,8 +8,15 @@
 </head>
 <body>
 <div class="header">
-<span>Holy Cross Davao College</span>
+    <div class="header-content">
+        <div class="header-text">
+            <span class="header-title">Holy Cross of Davao College</span>
+            <span class="header-subtitle">Sport Equipment Rental System</span>
+        </div>
+        <img src="/images/logo2.png" alt="HCDC Logo" class="header-logo">
+    </div>
 </div>
+
 
 
 

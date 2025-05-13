@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
 <body>
+<div class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <span class="header-title">Holy Cross of Davao College</span>
+            <span class="header-subtitle">Sport Equipment Rental System</span>
+        </div>
+        <img src="/images/logo2.png" alt="HCDC Logo" class="header-logo">
+    </div>
+</div>
 
 <!-- Sidebar -->
 <div class="menu-icon" onclick="toggleSidebar()">☰</div>
@@ -55,16 +64,23 @@ function toggleSidebar() {
                         <td>{{ $rental->year_level }}</td>
                         <td>{{ $rental->rental_date }}</td>
                         <td>
-                            <!-- Return Button -->
-                            <form action="/return/{{ $rental->id }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('POST') <!-- 👈 Important: match your route -->
-                                <button type="submit" class="btn return-btn">Return</button>
-                            </form>
+    <div class="action-column">
+        <form action="/return/{{ $rental->id }}" method="POST">
+            @csrf
+            @method('POST')
+            <button type="submit" class="btn return-btn">Return</button>
+        </form>
 
-                            <!-- Update Button -->
-                            <button class="btn update-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Update</button>
-                        </td>
+        <button class="btn update-btn" onclick="toggleUpdateForm('{{ $rental->id }}')">Update</button>
+
+        <form action="/delete/{{ $rental->id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this rental?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn delete-btn">Delete</button>
+        </form>
+    </div>
+</td>
+
                     </tr>
 
                     <!-- Hidden Update Form -->
@@ -74,7 +90,7 @@ function toggleSidebar() {
                                 @csrf
                                 @method('PUT')
                                 <input type="text" name="student_name" value="{{ $rental->student_name }}" required placeholder="Student Name">
-                                <input type="text" name="year_level" value="{{ $rental->year_level }}" required placeholder="Year Level">
+                                <input type="number" name="year_level" value="{{ $rental->year_level }}" min="1" max="4" required>
                                 <input type="date" name="rental_date" value="{{ $rental->rental_date }}" required placeholder="Rental Date">
                                 <div class="form-buttons">
                                     <button type="submit" class="btn save-btn">Save</button>

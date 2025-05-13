@@ -36,9 +36,9 @@ Route::get('/rent/{id}', function($id) {
 Route::post('/rent/{id}', function(Request $request, $id) {
     Rental::create([
         'equipment_id' => $id,
-        'student_name' => $request->name,
-        'year_level' => $request->year,
-        'rental_date' => $request->date,
+        'student_name' => $request->student_name,  // Fix here, use 'student_name' instead of 'name'
+        'year_level' => $request->year_level,      // Fix here, use 'year_level' instead of 'year'
+        'rental_date' => $request->rental_date,
     ]);
     $equipment = Equipment::find($id);
     $equipment->increment('rented_quantity');
@@ -109,4 +109,17 @@ Route::get('/history', function(Request $request) {
     $rentals = $query->with('equipment')->orderBy('rental_date', 'desc')->get();
 
     return view('history', compact('rentals'));
+});
+
+Route::delete('/delete/{id}', function ($id) {
+    $rental = \App\Models\Rental::findOrFail($id);
+
+    // Decrement the rented quantity of the equipment
+    $equipment = \App\Models\Equipment::findOrFail($rental->equipment_id);
+    $equipment->decrement('rented_quantity');
+
+    // Delete the rental record
+    $rental->delete();
+
+    return redirect('/records')->with('success', 'Rental record deleted.');
 });

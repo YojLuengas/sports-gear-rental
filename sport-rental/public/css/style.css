@@ -16,28 +16,60 @@ body {
     color: #333;
 }
 
-/* ----------------- HEADER ----------------- */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 .header {
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 30px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #e74c3c;
-    background-color: transparent;
+    background-color: #6C0A11; /* Darker Red */
+    padding: 20px 40px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Push content to the right */
+    align-items: center;
+    gap: 20px;
+}
+
+.header-logo {
+    height: 60px;
+    width: auto;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right; /* Align text to the right */
+}
+
+.header-title {
+    font-family: 'Merriweather', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+
+.header-subtitle {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    color: #f2f2f2;
+    margin-top: 4px;
+}
+
 
 /* ----------------- SIDEBAR ----------------- */
 .menu-icon {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 40px;
+    left: 40px;
     font-size: 36px;
     cursor: pointer;
     z-index: 1001;
-    color: #333;
+    color: #4a1818;
     transition: color 0.3s ease;
 }
 
@@ -48,7 +80,7 @@ body {
     width: 260px;
     height: 100%;
     background-color: #ffffff;
-    padding-top: 60px;
+    padding-top: 100px;
     transition: 0.3s ease;
     z-index: 1000;
     box-shadow: 2px 0 10px rgba(0,0,0,0.3);
@@ -69,7 +101,7 @@ body {
 
 .sidebar a:hover {
     background-color: #f8d7da;
-    color: #c0392b;
+    color: #6C0A11; /* Darker Red */
 }
 
 .sidebar.active {
@@ -77,7 +109,7 @@ body {
 }
 
 .menu-icon.active {
-    color: #e74c3c;
+    color: #c0392b;
 }
 
 .sidebar-icon {
@@ -105,8 +137,6 @@ body {
     opacity: 1;
 }
 
-
-
 /* ----------------- HOMEPAGE (DASHBOARD) ----------------- */
 .container {
     flex: 1;
@@ -121,7 +151,7 @@ body {
 }
 
 h2 {
-    color: #e74c3c;
+    color: #6C0A11; /* Darker Red */
     margin-bottom: 25px;
 }
 
@@ -161,7 +191,7 @@ h2 {
 .availability {
     margin-top: 12px;
     font-weight: bold;
-    color: #e74c3c;
+    color: #6C0A11; /* Darker Red */
 }
 
 .no-available {
@@ -215,7 +245,7 @@ form input {
 
 /* Button in search form */
 .search-form button {
-    background: #e74c3c;
+    background: #6C0A11; /* Darker Red */
     font-weight: bold;
     cursor: pointer;
     color: white;
@@ -227,7 +257,7 @@ form input {
 
 /* Error Message */
 .error {
-    background: #e74c3c;
+    background: #6C0A11; /* Darker Red */
     color: #ffffff;
     padding: 12px;
     border-radius: 8px;
@@ -235,36 +265,12 @@ form input {
     font-weight: bold;
 }
 
-/* ----------------- HISTORY & RECORDS TABLES ----------------- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #f8f9fa;
-    table-layout: fixed;
-}
-
 thead {
-    background-color: #e74c3c;
-    color: #ffffff;
-}
-
-th, td {
-    padding: 14px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    overflow: visible;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-th:nth-child(3), td:nth-child(3),
-th:nth-child(4), td:nth-child(4) {
-    width: 200px;
+    background-color: #8B0000;
 }
 
 tbody tr:hover {
-    background-color: #f8d7da;
+    background-color: #ffe5e5;
 }
 
 /* ----------------- BUTTONS ----------------- */
@@ -272,7 +278,7 @@ button, .btn, .back-btn, .logout-btn {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background: #e74c3c;
+    background: #8B0000; /* dark red */
     color: white;
     border: none;
     border-radius: 8px;
@@ -284,63 +290,63 @@ button, .btn, .back-btn, .logout-btn {
 }
 
 button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
-    background: #c0392b;
+    background: #700000; /* deeper red on hover */
     transform: scale(1.05);
 }
 
 /* Wrapper for Return and Update Buttons */
 .record-buttons-container {
     display: flex;
-    gap: 15px; /* Space between buttons */
-    justify-content: flex-start; /* Align buttons to the left */
+    gap: 15px;
+    justify-content: flex-start;
     margin-top: 10px;
 }
 
 /* Style for individual buttons */
 .return-btn, .update-btn {
-    padding: 8px 15px; /* Adjust padding for smaller buttons */
-    font-size: 14px; /* Smaller font size */
-    width: 100px; /* Smaller width for buttons */
+    padding: 8px 15px;
+    font-size: 14px;
+    width: 100px;
     display: inline-block;
     border-radius: 8px;
     text-align: center;
 }
 
 .return-btn {
-    background-color: #c0392b;
+    background-color: #8B0000;
 }
 
 .return-btn:hover {
-    background-color: #96281b;
+    background-color: #5a0000;
 }
 
 /* Style for the form container */
 .update-form {
     display: flex;
-    flex-direction: column;  /* Arrange inputs vertically */
-    gap: 15px;  /* Space between form elements */
-    align-items: stretch;  /* Ensure inputs stretch across container */
-    width: 100%;  /* Ensure it fills the width of the container */
-    max-width: 400px; /* Set a max-width to prevent it from stretching too far */
-    margin: 0 auto;  /* Center the form horizontally */
-    transition: all 0.3s ease; /* Smooth transition for form appearance */
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
 }
 
 /* Style for individual input fields */
 .update-form input {
     padding: 12px 16px;
     width: 100%;
-    background-color: #f8f9fa;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 1px solid #8B0000;
     border-radius: 8px;
     font-size: 16px;
-    color: #333;
+    color: #8B0000;
 }
 
 /* Style for Save and Cancel buttons */
 .update-form button {
     width: 100%;
-    max-width: 150px;  /* Make buttons fit within the container */
+    max-width: 150px;
     padding: 12px 15px;
     font-weight: bold;
     cursor: pointer;
@@ -350,44 +356,66 @@ button:hover, .btn:hover, .back-btn:hover, .logout-btn:hover {
 }
 
 .save-btn {
-    background-color: #27ae60;
+    background-color: #8B0000;
 }
 
 .save-btn:hover {
-    background-color: #229954;
+    background-color: #5a0000;
 }
 
 .cancel-btn {
-    background-color: #e74c3c;
+    background-color: #8B0000;
 }
 
 .cancel-btn:hover {
-    background-color: #96281b;
+    background-color: #5a0000;
 }
 
 /* Smooth slide-in effect from top to bottom */
 .update-form.active {
-    transform: translateY(0);  /* Slide the form in */
+    transform: translateY(0);
 }
 
 .update-form.inactive {
-    transform: translateY(-100%); /* Slide the form out */
-    opacity: 0; /* Optional: fade out effect */
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
+.delete-btn {
+    background-color: #8B0000;
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    width: 100px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #5a0000;
+    transform: scale(1.05);
+}
+
+/* ----------------- CONTAINER ----------------- */
+.container {
+    margin-top: 30px;
+}
 
 /* ----------------- TABLE LAYOUT ----------------- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     table-layout: fixed;
 }
 
 thead {
-    background-color: #e74c3c;
+    background-color: #8B0000;
     color: #ffffff;
+    margin-top: 20px;
 }
 
 th, td {
@@ -397,7 +425,6 @@ th, td {
     overflow: visible;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
 }
 
 th:nth-child(3), td:nth-child(3),
@@ -406,13 +433,12 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 tbody tr:hover {
-    background-color: #f8d7da;
+    background-color: #ffe5e5;
 }
-
 
 /* ----------------- ERROR MESSAGES ----------------- */
 .error {
-    background: #e74c3c;
+    background: #8B0000;
     color: #ffffff;
     padding: 12px;
     border-radius: 8px;
@@ -433,7 +459,7 @@ tbody tr:hover {
 }
 
 .login-container h2 {
-    color: #e74c3c;
+    color: #8B0000;
     margin-bottom: 30px;
     font-size: 28px;
     font-weight: bold;
@@ -444,7 +470,7 @@ form label {
     text-align: left;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #555;
+    color: #333;
 }
 
 form input {
@@ -453,8 +479,8 @@ form input {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-top: 5px;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #ffffff;
+    color: #8B0000;
     margin-bottom: 15px;
     font-size: 16px;
 }
@@ -462,7 +488,7 @@ form input {
 form button {
     width: 100%;
     padding: 12px 16px;
-    background-color: #e74c3c;
+    background-color: #8B0000;
     color: white;
     border: none;
     border-radius: 8px;
@@ -473,17 +499,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #c0392b;
-}
-
-/* Error Message */
-.error {
-    background: #e74c3c;
-    color: #ffffff;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-weight: bold;
+    background-color: #5a0000;
 }
 
 /* Loading Overlay */
@@ -557,47 +573,10 @@ body.login-page {
 }
 
 .register-container h2 {
-    color: #e74c3c;
+    color: #8B0000;
     margin-bottom: 30px;
     font-size: 28px;
     font-weight: bold;
-}
-
-form label {
-    display: block;
-    text-align: left;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #555;
-}
-
-form input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 5px;
-    background-color: #f8f9fa;
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-form button {
-    width: 100%;
-    padding: 12px 16px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-}
-
-form button:hover {
-    background-color: #c0392b;
 }
 
 p {
@@ -606,90 +585,22 @@ p {
 }
 
 p a {
-    color: #e74c3c;
+    color: #8B0000;
     text-decoration: none;
     font-weight: bold;
 }
 
 p a:hover {
-    color: #c0392b;
-}
-
-/* Loader Styles */
-#loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.loader {
-    display: flex;
-    gap: 30px;
-    animation: pulse 2s infinite;
-}
-
-.icon {
-    font-size: 3rem;
-    animation: bounce 1.5s infinite ease-in-out;
-}
-
-.icon:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.icon:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
+    color: #5a0000;
 }
 
 /* ----------------- REGISTER FORM ----------------- */
-.login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login-container h2 {
-    color: #e74c3c;
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
 .login-container form label {
     display: block;
     text-align: left;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #555;
+    color: #333;
 }
 
 .login-container form input {
@@ -698,8 +609,8 @@ p a:hover {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-top: 5px;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #ffffff;
+    color: #8B0000;
     margin-bottom: 15px;
     font-size: 16px;
 }
@@ -707,7 +618,7 @@ p a:hover {
 .login-container form button {
     width: 100%;
     padding: 12px 16px;
-    background-color: #e74c3c;
+    background-color: #8B0000;
     color: white;
     border: none;
     border-radius: 8px;
@@ -718,12 +629,19 @@ p a:hover {
 }
 
 .login-container form button:hover {
-    background-color: #c0392b;
+    background-color: #5a0000;
 }
 
+.action-columns {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-
-
-
-
-
+/* Make each action group (Return, Update, Delete) stack its buttons vertically */
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

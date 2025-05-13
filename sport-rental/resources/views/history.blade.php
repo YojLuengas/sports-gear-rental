@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<div class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <span class="header-title">Holy Cross of Davao College</span>
+            <span class="header-subtitle">Sport Equipment Rental System</span>
+        </div>
+        <img src="/images/logo2.png" alt="HCDC Logo" class="header-logo">
+    </div>
+</div>
 
 <!-- Sidebar -->
 <div class="menu-icon" onclick="toggleSidebar()">☰</div>
@@ -14,8 +23,6 @@
     <a href="/records"><i class="fas fa-clipboard-list sidebar-icon"></i> Records</a>
     <a href="/history"><i class="fas fa-history sidebar-icon"></i> History</a>
     <a href="/logout"><i class="fas fa-sign-out-alt sidebar-icon"></i> Logout</a>
-
-    <!-- Logo at the bottom -->
     <div class="sidebar-logo">
         <img src="/images/logo.png" alt="Logo">
     </div>
@@ -55,8 +62,12 @@ function toggleSidebar() {
         </select>
 
         <input type="date" name="rental_date" value="{{ request('rental_date') }}">
+        <!-- Search Student Name Input -->
+        <input type="text" id="searchInput" placeholder="Search student name..." style="padding: 10px; width: 250px; border-radius: 8px; border: 1px solid #ccc;">
         <button type="submit" class="btn">Filter</button>
     </form>
+
+    
 
     <!-- Rental Table -->
     <div class="history-table">
@@ -69,11 +80,11 @@ function toggleSidebar() {
                     <th>Rental Date</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="rentalTableBody">
                 @forelse ($rentals as $rental)
                     <tr>
                         <td>{{ $rental->equipment->name }}</td>
-                        <td>{{ $rental->student_name }}</td>
+                        <td class="student-name">{{ $rental->student_name }}</td>
                         <td>{{ $rental->year_level }}</td>
                         <td>{{ $rental->rental_date }}</td>
                     </tr>
@@ -86,6 +97,20 @@ function toggleSidebar() {
         </table>
     </div>
 </div>
+
+<!-- Live Search Script -->
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const rows = document.querySelectorAll('#rentalTableBody tr');
+
+    searchInput.addEventListener('keyup', function () {
+        const query = this.value.toLowerCase();
+        rows.forEach(row => {
+            const studentName = row.querySelector('.student-name')?.textContent.toLowerCase();
+            row.style.display = studentName.includes(query) ? '' : 'none';
+        });
+    });
+</script>
 
 </body>
 </html>

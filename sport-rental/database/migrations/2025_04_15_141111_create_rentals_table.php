@@ -13,11 +13,13 @@ return new class extends Migration
 {
     Schema::create('rentals', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('equipment_id')->constrained()->onDelete('cascade');
+        $table->unsignedBigInteger('equipment_id');
         $table->string('student_name');
-        $table->string('year_level');
+        $table->integer('year_level');  // Ensure this exists and is an integer
         $table->date('rental_date');
         $table->timestamps();
+    
+        $table->foreign('equipment_id')->references('id')->on('equipment');
     });
 }
 

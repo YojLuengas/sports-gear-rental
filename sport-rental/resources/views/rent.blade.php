@@ -44,18 +44,20 @@
 
         <!-- Form to rent the equipment -->
         <form method="POST" action="/rent/{{ $equipment->id }}">
-            @csrf
-            <label>Student Name:</label>
-            <input type="text" name="name" required>
+    @csrf
 
-            <label>Year Level:</label>
-            <input type="text" name="year" required>
+    <label>Student Name:</label>
+    <input type="text" name="student_name" required>
 
-            <label>Rental Date:</label>
-            <input type="date" name="date" required>
+    <label for="year_level">Year Level:</label>
+    <input type="number" name="year_level" id="year_level" min="1" max="4" required>
 
-            <button type="submit">Submit</button>
-        </form>
+    <label>Rental Date:</label>
+    <input type="date" name="rental_date" required>
+
+    <button type="submit">Submit</button>
+</form>
+
 
         <!-- Back to Home button -->
         <a href="/home" class="back-btn">Back to Home</a>
